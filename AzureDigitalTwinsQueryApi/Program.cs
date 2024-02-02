@@ -42,6 +42,11 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi
             app.UseStatusCodePages();
             app.UseRouting();
 
+            app.MapGet("/api", () =>
+            {
+                return Results.Ok("Azure Digital Twins Query API");
+            });
+
             app.MapPost("/api/q", (IAzureDigitalTwinService service, QueryRequest request) =>
             {
                 return service.Query(request.Query);
