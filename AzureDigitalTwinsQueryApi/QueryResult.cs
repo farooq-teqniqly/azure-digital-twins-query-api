@@ -1,5 +1,4 @@
 ﻿using Azure.DigitalTwins.Core;
-using System.Collections.Generic;
 
 namespace Teqniqly.AzureDigitalTwinsQueryApi
 {

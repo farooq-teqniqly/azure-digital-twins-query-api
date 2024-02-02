@@ -6,18 +6,13 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi
     /// <summary>
     /// Provides a service for interacting with Azure Digital Twin service.
     /// </summary>
-    public class AzureDigitalTwinService : IAzureDigitalTwinService
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="AzureDigitalTwinService"/> class.
+    /// </remarks>
+    /// <param name="digitalTwinsClient">The client used to interact with the Azure Digital Twin service.</param>
+    public class AzureDigitalTwinService(DigitalTwinsClient digitalTwinsClient) : IAzureDigitalTwinService
     {
-        private readonly DigitalTwinsClient digitalTwinsClient;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AzureDigitalTwinService"/> class.
-        /// </summary>
-        /// <param name="digitalTwinsClient">The client used to interact with the Azure Digital Twin service.</param>
-        public AzureDigitalTwinService(DigitalTwinsClient digitalTwinsClient)
-        {
-            this.digitalTwinsClient = digitalTwinsClient;
-        }
+        private readonly DigitalTwinsClient digitalTwinsClient = digitalTwinsClient;
 
         /// <summary>
         /// Sends a query to the Azure Digital Twin service and retrieves the results.

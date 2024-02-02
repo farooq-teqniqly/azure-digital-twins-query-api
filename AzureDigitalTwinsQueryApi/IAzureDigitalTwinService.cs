@@ -1,6 +1,4 @@
-﻿using Azure.DigitalTwins.Core;
-
-namespace Teqniqly.AzureDigitalTwinsQueryApi
+﻿namespace Teqniqly.AzureDigitalTwinsQueryApi
 {
     /// <summary>
     /// Provides an interface for interacting with Azure Digital Twin service.
