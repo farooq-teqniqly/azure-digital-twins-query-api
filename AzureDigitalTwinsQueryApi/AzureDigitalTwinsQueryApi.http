@@ -1,6 +1,10 @@
 @AzureDigitalTwinsQueryApi_HostAddress = http://localhost:5075
 
-GET {{AzureDigitalTwinsQueryApi_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{AzureDigitalTwinsQueryApi_HostAddress}}/api/q
+Content-Type: application/json
+
+{
+  "Query": "SELECT * FROM digitaltwins"
+}
 
 ###
