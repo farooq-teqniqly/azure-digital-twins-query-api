@@ -6,7 +6,7 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
-    public partial class Program
+    public class Program
     {
         /// <summary>
         /// Defines the entry point of the application.
@@ -42,15 +42,9 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi
             app.UseStatusCodePages();
             app.UseRouting();
 
-            app.MapGet("/api", () =>
-            {
-                return Results.Ok("Azure Digital Twins Query API");
-            });
+            app.MapGet(Routes.Welcome, () => Results.Ok("Azure Digital Twins Query API"));
 
-            app.MapPost("/api/q", (IAzureDigitalTwinService service, QueryRequest request) =>
-            {
-                return service.Query(request.Query);
-            });
+            app.MapPost(Routes.Query, (IAzureDigitalTwinService service, QueryRequest request) => service.Query(request.Query));
 
             app.Run();
         }

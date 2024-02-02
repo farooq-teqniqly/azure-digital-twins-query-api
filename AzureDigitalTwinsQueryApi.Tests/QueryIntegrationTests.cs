@@ -10,19 +10,13 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi.Tests
         private readonly ApiTestClient client = new(fixture.CreateClient());
 
         [Fact]
-        public async Task Post_When_Successful_Returns_Created_Status_Code()
-        {
-            var requestBody = new QueryRequest { Query = "SELECT * FROM digitaltwins" };
-            var response = await client.PostAsync("api/q", requestBody);
-
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-        }
-
-        [Fact]
         public async Task Post_When_Successful_Returns_Expected_Results()
         {
             var requestBody = new QueryRequest { Query = "SELECT * FROM digitaltwins" };
-            var response = await client.PostAsync("api/q", requestBody);
+            var response = await client.PostAsync(Routes.Query, requestBody);
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
             var result = await ApiTestClient.ReadFromJsonAsync<QueryResult>(response);
 
             result.Twins.Count.Should().Be(4);
