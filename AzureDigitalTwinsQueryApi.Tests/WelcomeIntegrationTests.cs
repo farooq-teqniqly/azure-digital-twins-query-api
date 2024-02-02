@@ -4,15 +4,12 @@ using Xunit;
 
 namespace Teqniqly.AzureDigitalTwinsQueryApi.Tests
 {
-    public sealed class WelcomeIntegrationTests(CustomWebApplicationFactory fixture)
-        : IClassFixture<CustomWebApplicationFactory>, IDisposable
+    public sealed class WelcomeIntegrationTests(CustomWebApplicationFactory fixture) : ApiIntegrationTests(fixture)
     {
-        private readonly ApiTestClient client = new(fixture.CreateClient());
-
         [Fact]
         public async Task Get_When_Successful_Returns_Welcome_Message()
         {
-            var response = await client.GetAsync(Routes.Welcome);
+            var response = await Client.GetAsync(Routes.Welcome);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -20,7 +17,5 @@ namespace Teqniqly.AzureDigitalTwinsQueryApi.Tests
 
             welcomeMessage.Should().Be("Azure Digital Twins Query API");
         }
-
-        public void Dispose() => client.Dispose();
     }
 }
