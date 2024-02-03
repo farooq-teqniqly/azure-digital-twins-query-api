@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  api:
+    image: adt-query-api:latest
+    ports:
+      - 4000:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Logging__LogLevel__Default=Debug
+      - AZURE_CLIENT_SECRET=[Your Azure Client Secret]
+      - AZURE_CLIENT_ID=[Your Azure Client ID]
+      - AZURE_TENANT_ID=[Your Azure Tenant ID]
+      - DigitalTwinsEndpoint=[Your Digital Twins Endpoint]
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
