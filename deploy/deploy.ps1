@@ -44,10 +44,7 @@ $acrSku = "Basic"
 $acrImageName = "adt-query-api"
 $acrImageTag = "latest"
 
-$logAnalyticsWorkspaceId =  az monitor log-analytics workspace show `
-    --resource-group DefaultResourceGroup-$location `
-    --workspace-name DefaultWorkspace-$location `
-    --query customerId -o tsv
+$logAnalyticsWorkspaceId = "/subscriptions/$subscriptionId/resourceGroups/DefaultResourceGroup-$location/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-$location"
 
 Write-Host "Your unique prefix for the Azure resource group and resources is " -NoNewline
 Write-Host $uniquePrefix -ForegroundColor Cyan
@@ -85,7 +82,6 @@ if (!$output) {
     exit 1
 }
 
-Write-Host $output | ConvertFrom-Json | Format-Table -AutoSize
 Write-Host "Deployment complete." -ForegroundColor Cyan
 Write-Host "To cleanup Azure resources, you may run the following commands:" -ForegroundColor Cyan
 Write-Host "az group delete --name $resourceGroupName --no-wait --yes" -ForegroundColor Yellow
